@@ -11,15 +11,12 @@ public class CubeController : MonoBehaviour
     //消滅位置
     private float deadline = -10;
 
-    //SEの取得
-    public AudioClip sound;
 
     // Start is called before the first frame update
     void Start()
     {
         //AudioSourceによる再生
         this.audioSource2D = GetComponent<AudioSource>();
-        this.audioSource2D.volume = 0;
     }
 
     // Update is called once per frame
@@ -39,18 +36,9 @@ public class CubeController : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
 
-        //Playclipによる再生
-        //AudioSource.PlayClipAtPoint(sound, this.transform.position, 1);
-
-        if (collision.gameObject.name == "UnityChan2D")
+        if (collision.gameObject.name != "UnityChan2D")
         {
-           
-            this.audioSource2D.volume = 0;
-            //AudioSource.PlayClipAtPoint(sound, this.transform.position, 0);
-        }
-        else
-        {
-            this.audioSource2D.volume = 1;
+            this.audioSource2D.Play();
         }
     }
 }
